@@ -7,7 +7,7 @@ import 'swiper/css/scrollbar';
 import styles from './style.module.css';
 
 // import required modules
-import { Navigation, Pagination, Keyboard, Autoplay, A11y } from 'swiper';
+import { Navigation, Pagination } from 'swiper';
 import { useState } from 'react';
 
 export default function App() {
@@ -43,17 +43,14 @@ export default function App() {
       </div>
       <div className={styles.slider_wrap}>
         <Swiper
-          modules={[Navigation, Pagination, Keyboard, Autoplay, A11y]}
-          cssMode={true}
+          modules={[Navigation, Pagination]}
           navigation={true}
           slidesPerView={1}
-          speed={3000}
+          speed={1500}
           loop={true}
           pagination={{ clickable: true }}
-          keyboard={true}
           onSlideChange={swiper => {
             setIndex(swiper.realIndex + 1);
-            console.log(swiper);
           }}
           className="mySwiper"
         >
