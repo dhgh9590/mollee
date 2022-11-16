@@ -1,20 +1,40 @@
 import React from 'react';
 import styles from './style.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faAngleDown,
-  faSearch,
-  faUser,
-  faHeart,
-  faShoppingBag,
-  faBars,
-  faTimes,
-} from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, faHeart, faShoppingBag, faBars, faTimes, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { PATH } from '../../constants/path';
+import { onLogin, onLogout, onUserStateChange } from '../../constants/firebase';
+import { useEffect } from 'react';
+import useScrollTop from '../../hooks/useScrollTop';
+import { useContext } from 'react';
+import { addUser } from '../../context/user';
 
 const Index = () => {
-  const [tab, setTab] = useState(false);
-  const [mobileNav, setMobileNav] = useState(false);
+  const [tab, setTab] = useState(false); //메뉴 2뎁스
+  const [mobileNav, setMobileNav] = useState(false); //모바일 메뉴
+  const navigate = useNavigate();
+  const { user, setUser } = useContext(addUser); //사용자 정보 저장
+  const scrollTop = useScrollTop(); //페이지 전환시 스크롤 최상단으로 이동
+
+  useEffect(() => {
+    //사용자 정보 기억
+    onUserStateChange(user => {
+      setUser(user);
+    });
+    scrollTop;
+  }, []);
+
+  //로그인 함수
+  const handleLogin = () => {
+    onLogin();
+  };
+
+  //로그아웃 함수
+  const handleLogout = () => {
+    onLogout();
+  };
 
   return (
     <nav
@@ -34,7 +54,12 @@ const Index = () => {
         </button>
       </div>
       <div className={`${styles.menu_wrap} ${tab && styles.active}`}>
-        <div className={styles.title}>
+        <div
+          className={styles.title}
+          onClick={() => {
+            navigate(PATH.MAIN);
+          }}
+        >
           <h1>MOLLEE</h1>
         </div>
         <div className={`${styles.menu_list} ${mobileNav && styles.active}`}>
@@ -49,7 +74,11 @@ const Index = () => {
             </button>
           </div>
           <ul>
-            <li>
+            <li
+              onClick={() => {
+                navigate(PATH.MAIN);
+              }}
+            >
               <em>Home</em>
             </li>
             <li
@@ -70,38 +99,75 @@ const Index = () => {
         </div>
         <div className={styles.tab_menu}>
           <ul>
-            <li>
+            <li
+              onClick={() => {
+                navigate(`${PATH.SHOP}/${PATH.MEN}`);
+              }}
+            >
               <em>Men</em>
             </li>
-            <li>
+            <li
+              onClick={() => {
+                navigate(`${PATH.SHOP}/${PATH.WOMEN}`);
+              }}
+            >
               <em>Women</em>
             </li>
-            <li>
+            <li
+              onClick={() => {
+                navigate(`${PATH.SHOP}/${PATH.ACCESSORIES}`);
+              }}
+            >
               <em>Accessories</em>
             </li>
-            <li>
-              <em>New Arrivals</em>
+            <li
+              onClick={() => {
+                navigate(`${PATH.SHOP}/${PATH.SHOES}`);
+              }}
+            >
+              <em>Shoes</em>
             </li>
           </ul>
         </div>
       </div>
       <div className={styles.user_wrap}>
-        <ul>
-          <li>
-            <FontAwesomeIcon icon={faSearch} className={styles.icon} />
-          </li>
-          <li>
-            <FontAwesomeIcon icon={faUser} className={styles.icon} />
-          </li>
-          <li>
-            <FontAwesomeIcon icon={faHeart} className={styles.icon} />
-            <em className={styles.count}>0</em>
-          </li>
-          <li>
-            <FontAwesomeIcon icon={faShoppingBag} className={styles.icon} />
-            <em className={styles.count}>0</em>
-          </li>
-        </ul>
+        {!user ? (
+          <button className={styles.login} onClick={handleLogin}>
+            Login
+          </button>
+        ) : (
+          <ul>
+            <li>
+              <FontAwesomeIcon icon={faHeart} className={styles.icon} />
+              <em className={styles.count}>0</em>
+            </li>
+            <li
+              onClick={() => {
+                navigate(PATH.CART);
+              }}
+            >
+              <FontAwesomeIcon icon={faShoppingBag} className={styles.icon} />
+              <em className={styles.count}>0</em>
+            </li>
+            {user.isAdmin && (
+              <li>
+                <FontAwesomeIcon icon={faPencilAlt} />
+              </li>
+            )}
+
+            <li className={styles.user_name}>
+              <em>{user && user.displayName}</em>
+            </li>
+            <li
+              className={styles.logout}
+              onClick={() => {
+                handleLogout();
+              }}
+            >
+              <em>Logout</em>
+            </li>
+          </ul>
+        )}
       </div>
     </nav>
   );

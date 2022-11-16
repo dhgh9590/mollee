@@ -1,0 +1,50 @@
+.section{max-width: 1440px; margin: 0 auto; padding: 50px 20px; box-sizing: border-box;}
+
+.item{display: flex;}
+.item .item_img{width: 700px;height: 850px;background: #555;}
+.item .item_img img{width: 100%;height: 100%;object-fit: cover;}
+
+.item_info{width: 480px; margin-left: 120px;}
+.item_info .type{font-size: 14px;font-weight: 500;}
+.item_info .name{font-size: 22px;font-weight: 600; margin: 10px 0;}
+.item_info .price{font-size: 22px; font-weight: 700;}
+.item_info .info{font-size: 16px;font-weight: 400; margin-top: 20px;}
+
+/* 사이즈 */
+.item_size{display: flex; margin-top: 50px; align-items: center;}
+.item_size strong{font-size: 16px; font-weight: 500;margin-right: 50px;}
+.item_size ul{display: flex;}
+.item_size ul li{ width: 50px;height: 30px;  border: 1px solid #ccc; box-sizing: border-box; margin: 0 5px; cursor: pointer; display: flex; justify-content: center; align-items: center;}
+.item_size ul li em{font-weight: 500;}
+
+/* 컬러 */
+.item_color{display: flex; margin-top: 20px; align-items: center;}
+.item_color strong{font-size: 16px; font-weight: 500;margin-right:30px;}
+.item_color ul{display: flex;}
+.item_color ul li{ width: 20px;height: 20px;border-radius: 50%;  box-sizing: border-box; margin: 0 5px; cursor: pointer; display: flex; justify-content: center; align-items: center;}
+
+/* 버튼 */
+.btn{margin-top: 50px; display: flex;}
+.btn .count{width: 155px;height: 50px;border: 2px solid #ccc; padding: 0 20px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center;}
+.btn .count em{font-size: 26px; font-weight: 500;}
+.btn .count .icon{font-size: 20px; cursor: pointer;}
+
+.btn1{margin-left: 10px;width: 100%; font-weight: 600;}
+
+@media (max-width:1023px){
+    .item .item_img{height: 600px;}
+    .item_info{margin-left: 60px;}
+}
+
+@media (max-width:767px){
+    .item{flex-direction: column;}
+    .item .item_img{width: 100%;}
+    .item_info{width: 100%; margin: 60px 0 0;}
+}
+
+@media (max-width:360px){
+    .item_size strong{margin-right: 20px;}
+    .item_color strong{margin-right:20px;}
+}
+
+

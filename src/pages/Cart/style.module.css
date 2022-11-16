@@ -1,0 +1,91 @@
+.header{width: 100%;height: 230px; padding: 0 20px; text-align: center; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 1px solid #ccc; box-sizing: border-box;}
+.header .title{font-size: 32px; font-weight: 500; margin-bottom: 20px;}
+
+.section{max-width: 1440px; padding: 50px 20px; margin: 0 auto; box-sizing: border-box; display: flex; justify-content: space-between;}
+
+.content{}
+
+.title{display: flex; padding: 15px 0; box-sizing: border-box;}
+.title em{display: block; font-size: 16px;font-weight: 600;}
+.title .product{width: 450px;}
+.title .price{width: 120px;}
+.title .quantity{width: 190px;}
+.title .subtotal{width: 170px;}
+
+.item_list{}
+.item_list ul{}
+.item_list ul li{}
+
+.item{padding: 30px 0; box-sizing: border-box; border-top: 2px solid #ccc; display: flex;}
+.item .item_info{width: 450px; display: flex;}
+.item .item_info .item_img{width: 90px;height: 120px; background: #555;}
+.item .item_info .item_img img{width: 100%;height: 100%;object-fit: cover;}
+.item .item_info .item_text{margin-left: 30px; padding-top: 20px; box-sizing: border-box;}
+.item .item_info .item_text h2{font-size: 16px;font-weight: 600; margin-bottom: 5px;}
+.item .item_info .item_text em{font-size: 14px;font-weight: 600; color: #aaa;}
+
+.item .item_price{width: 120px;  padding-top: 20px; box-sizing: border-box;}
+.item .item_price em{font-size: 18px; font-weight: 700;}
+
+.item .item_quantity{width: 190px;}
+.item .item_quantity{display: flex;}
+.item .item_quantity .count{width: 120px; height: 50px;border: 2px solid #ccc; padding: 0 10px;  box-sizing: border-box; display: flex; justify-content: space-between; align-items: center;}
+.item .item_quantity .count em{font-size: 20px; font-weight: 500; margin: 0 10px;}
+.item .item_quantity .count .icon{font-size: 12px; cursor: pointer;}
+
+.item .item_subtotal{width: 170px;padding-top: 20px; box-sizing: border-box; display: flex; justify-content: space-between;}
+.item .item_subtotal em{font-size: 18px; font-weight: 700;}
+.item .item_subtotal .icon{font-size: 20px; cursor: pointer;}
+
+
+/* 주문 토탈 */
+.order{width: 380px; background: #f2f2f2; padding: 40px; box-sizing: border-box;}
+.order span{display: block; width: 100%;height: 2px;background: #ccc; margin: 20px 0;}
+.order_summary{}
+.order_summary h4{font-size: 24px;font-weight: 600;}
+.order_summary ul{}
+.order_summary ul li{display: flex; justify-content: space-between; font-size: 16px; margin-bottom: 10px;}
+.order_summary ul li:last-child{margin-bottom: 0;}
+.order_summary ul li em{}
+.order_summary ul li strong{}
+
+.total{display: flex; justify-content: space-between; align-items: center; font-size: 24px;font-weight: 600;}
+.btn1{ width: 100%; margin-top: 30px;}
+
+@media (max-width :1380px ){
+    .section{flex-direction: column; align-items: center;}
+    .order{width: 100%; margin-top: 20px;}
+    .content{width: 100%; padding: 0 20px; box-sizing: border-box;}
+}
+
+@media (max-width :767px ){
+    .title .product{width: 300px;}
+    .item .item_info{width: 300px;}
+    .item .item_info .item_text{margin-left: 10px;}
+}
+
+@media (max-width :650px ){
+    .title{display: none;}
+    .item{padding: 4.6154vw 0; }
+    .item .item_info{width: 46.1538vw; margin-right: 1.5385vw;}
+    .item .item_info .item_img{min-width: 12.3077vw; width: 13.8462vw;height: 18.4615vw; }
+    .item .item_info .item_text{margin-left: 1.5385vw; padding-top: 0; }
+    .item .item_info .item_text h2{font-size: 2.4615vw; margin-bottom: 0.7692vw;}
+    .item .item_info .item_text em{font-size: 2.1538vw;}
+
+    .item .item_price{width: 18.4615vw;  padding-top: 0; }
+    .item .item_price em{font-size: 2.7692vw; }
+
+    .item .item_quantity{width: 29.2308vw;}
+
+    .item .item_quantity .count{width: 18.4615vw; height: 7.6923vw;border: 0.3077vw solid #ccc; padding: 0 1.5385vw; margin: 0 1.5385vw;}
+    .item .item_quantity .count em{font-size: 3.0769vw;margin: 0 1.5385vw;}
+    .item .item_quantity .count .icon{font-size: 1.8462vw; }
+
+    .item .item_subtotal{width: 26.1538vw;padding-top: 0;}
+    .item .item_subtotal em{font-size: 2.7692vw; }
+    .item .item_subtotal .icon{font-size: 3.0769vw; }
+}
+
+
+

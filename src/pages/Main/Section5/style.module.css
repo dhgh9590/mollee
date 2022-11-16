@@ -1,0 +1,53 @@
+.section{width: 100%;padding: 100px 0; box-sizing: border-box; display: flex; flex-direction: column; align-items: center;}
+
+.sub_title{font-size: 14px; letter-spacing: 0.2em;}
+.sub_title strong{font-weight: 700;}
+.sub_title em{font-weight: 500;}
+
+.title{text-align: center;}
+.title h2{font-size: 36px;font-weight: 700; letter-spacing: 0.02em; margin: 15px 0 25px;}
+.title p{max-width: 500px; font-size: 16px;font-weight: 400;line-height: 30px; padding: 0 20px; box-sizing: border-box;}
+
+.content{margin-top: 40px;}
+.content ul{ display: flex; justify-content: center; }
+.content ul li{width: 555px;height: 300px; background: #555; margin: 0 15px; position: relative;}
+
+.content ul li:nth-child(1){background: url(../../../../public/images/section5_1.png) no-repeat center; background-size: cover;}
+.content ul li:nth-child(2){background: url(../../../../public/images/section5_2.png) no-repeat center; background-size: cover;}
+
+.text_box{width: 320px;height: 230px; padding: 60px 0 0 50px; box-sizing: border-box; background: #fff; position: absolute; bottom: -30px; right: 0; letter-spacing: 0.02em;}
+.text_box p{font-size: 18px;font-weight: 400;line-height: 24px; margin-bottom: 25px;}
+.text_box em{font-size: 14px;font-weight: 400;}
+.text_box .more{display: flex; align-items: center; margin-top: 30px; cursor: pointer; transition: all 0.6s;}
+.text_box .more:hover{transform: translateX(10px);}
+.text_box .more span{display: block; width: 25px;height: 2px;background: #000;}
+.text_box .more em{margin-left: 15px;}
+
+.btn1{margin-top: 120px;}
+
+
+@media (max-width:1200px){
+    .content ul li{width: 400px;}
+    .text_box{width: 250px; height: 200px; padding: 20px;}
+}
+
+@media (max-width:1023px){
+    .section{padding: 50px 0;}
+}
+
+@media (max-width:880px){
+    .content ul{flex-direction: column;}
+    .content ul li{width: 555px;height: 300px;margin: 20px 0;}
+    .text_box{width: 320px;height: 230px; padding: 60px 0 0 50px;}
+}
+
+@media (max-width:600px){
+    .content ul li{width: 92.5000vw;height: 50.0000vw; margin: 3.3333vw 0;}
+    .text_box{width: 53.3333vw;height: 38.3333vw; padding: 10.0000vw 0 0 8.3333vw; bottom: -5.0000vw; }
+    .text_box p{font-size: 3.0000vw;line-height: 4.0000vw; margin-bottom: 4.1667vw;}
+    .text_box em{font-size: 2.3333vw;}
+    .text_box .more{margin-top: 5.0000vw; }
+    .text_box .more span{ width: 4.1667vw;height: 0.3333vw;}
+    .text_box .more em{margin-left: 2.5000vw;}
+    .btn1{ margin-top: 20.0000vw;}
+}

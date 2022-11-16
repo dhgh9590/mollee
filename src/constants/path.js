@@ -4,6 +4,11 @@ export const BASE_PATH = '/calendar';
 
 export const PATH = {
   MAIN: '/',
-  DAY: '/day',
-  WEEK: '/week',
+  SHOP: '/shop',
+  DETAIL: '/Detail',
+  CART: '/Cart',
+  MEN: 'men',
+  WOMEN: 'women',
+  ACCESSORIES: 'Accessories',
+  SHOES: 'shoes',
 };

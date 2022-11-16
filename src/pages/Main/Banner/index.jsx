@@ -13,7 +13,7 @@ import { useState } from 'react';
 export default function App() {
   const [index, setIndex] = useState(); //현재 슬라이드 인덱스 번호 저장
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} slide1`}>
       <div className={styles.side_bar}>
         <ul>
           <li>

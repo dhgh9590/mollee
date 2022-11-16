@@ -56,7 +56,7 @@ const Index = () => {
                 setMenuActive(4);
               }}
             >
-              <em>New Arrivals</em>
+              <em>Shoes</em>
             </li>
           </ul>
         </div>
@@ -72,6 +72,7 @@ const Index = () => {
                   <img src={`${process.env.PUBLIC_URL}/images/section2_1.png`} alt="" />
                 </div>
                 <div className={styles.text}>
+                  <em>SHIRTS</em>
                   <h4>Cotton T-shirt</h4>
                   <strong>$35.99</strong>
                 </div>
