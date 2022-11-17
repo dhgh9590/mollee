@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -10,8 +10,28 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 // import required modules
 import { Navigation, Pagination } from 'swiper';
+import { handleData } from '../../../constants/firebase';
+import { useNavigate } from 'react-router-dom';
+import { PATH } from '../../../constants/path';
 
 export default function App() {
+  const firebaseDAta = handleData(); //파이어 베이스에서 가지고온 데이터
+  const [data, setData] = useState(); //아이템 데이터
+  const navigate = useNavigate();
+
+  //프로미스 변환 및 필터
+  const getData = () => {
+    firebaseDAta.then(appData => {
+      const data = appData.filter(item => {
+        return item.bast == 'true';
+      });
+      setData(data.slice(0, 5));
+    });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <div className={styles.container}>
       <div className={styles.text_container}>
@@ -80,92 +100,35 @@ export default function App() {
             modules={[Navigation, Pagination]}
             className="mySwiper"
           >
-            <SwiperSlide>
-              <div className={styles.slide}>
-                <div className={styles.heart}>
-                  <em>NEW</em>
-                  <FontAwesomeIcon icon={faHeart} className={styles.icon} />
-                </div>
-                <div className={styles.item}>
-                  <div className={styles.img}>
-                    <img src={`${process.env.PUBLIC_URL}/images/section2_1.png`} alt="" />
-                  </div>
-                  <div className={styles.text}>
-                    <em>SHIRTS</em>
-                    <h4>Cotton T-shirt</h4>
-                    <strong>$35.99</strong>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className={styles.slide}>
-                <div className={styles.heart}>
-                  <em>NEW</em>
-                  <FontAwesomeIcon icon={faHeart} className={styles.icon} />
-                </div>
-                <div className={styles.item}>
-                  <div className={styles.img}>
-                    <img src={`${process.env.PUBLIC_URL}/images/section2_1.png`} alt="" />
-                  </div>
-                  <div className={styles.text}>
-                    <h4>Cotton T-shirt</h4>
-                    <strong>$35.99</strong>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className={styles.slide}>
-                <div className={styles.heart}>
-                  <em>NEW</em>
-                  <FontAwesomeIcon icon={faHeart} className={styles.icon} />
-                </div>
-                <div className={styles.item}>
-                  <div className={styles.img}>
-                    <img src={`${process.env.PUBLIC_URL}/images/section2_1.png`} alt="" />
-                  </div>
-                  <div className={styles.text}>
-                    <h4>Cotton T-shirt</h4>
-                    <strong>$35.99</strong>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className={styles.slide}>
-                <div className={styles.heart}>
-                  <em>NEW</em>
-                  <FontAwesomeIcon icon={faHeart} className={styles.icon} />
-                </div>
-                <div className={styles.item}>
-                  <div className={styles.img}>
-                    <img src={`${process.env.PUBLIC_URL}/images/section2_1.png`} alt="" />
-                  </div>
-                  <div className={styles.text}>
-                    <h4>Cotton T-shirt</h4>
-                    <strong>$35.99</strong>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className={styles.slide}>
-                <div className={styles.heart}>
-                  <em>NEW</em>
-                  <FontAwesomeIcon icon={faHeart} className={styles.icon} />
-                </div>
-                <div className={styles.item}>
-                  <div className={styles.img}>
-                    <img src={`${process.env.PUBLIC_URL}/images/section2_1.png`} alt="" />
-                  </div>
-                  <div className={styles.text}>
-                    <h4>Cotton T-shirt</h4>
-                    <strong>$35.99</strong>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
+            {data &&
+              data.map(item => {
+                return (
+                  <SwiperSlide key={item.id}>
+                    <div className={styles.slide}>
+                      <div className={styles.heart}>
+                        <em>BAST</em>
+                        <FontAwesomeIcon icon={faHeart} className={styles.icon} />
+                      </div>
+                      <div
+                        className={styles.item}
+                        onClick={() => {
+                          navigate(PATH.DETAIL);
+                          localStorage.setItem('item', JSON.stringify(item));
+                        }}
+                      >
+                        <div className={styles.img}>
+                          <img src={item.img} alt="이미지" />
+                        </div>
+                        <div className={styles.text}>
+                          <em>{item.type}</em>
+                          <h4>{item.name}</h4>
+                          <strong>${item.price}</strong>
+                        </div>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
           </Swiper>
         </div>
       </section>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './reset.css';
 import './App.css';
-import { Main, Shop, Detail, Cart } from './pages';
+import { Main, Shop, Detail, Cart, Admin } from './pages';
 import { PATH } from './constants/path';
 import Men from './pages/Shop/Men';
 import Women from './pages/Shop/Women';
@@ -35,6 +35,7 @@ function App() {
           </Route>
           <Route path={PATH.DETAIL} element={<Detail></Detail>}></Route>
           <Route path={PATH.CART} element={<Cart></Cart>}></Route>
+          <Route path={PATH.ADMIN} element={<Admin></Admin>}></Route>
         </Routes>
       </addUser.Provider>
     </div>

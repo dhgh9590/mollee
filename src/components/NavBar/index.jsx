@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import useScrollTop from '../../hooks/useScrollTop';
 import { useContext } from 'react';
 import { addUser } from '../../context/user';
+import useCart from '../../hooks/useCart';
 
 const Index = () => {
   const [tab, setTab] = useState(false); //메뉴 2뎁스
@@ -17,12 +18,16 @@ const Index = () => {
   const navigate = useNavigate();
   const { user, setUser } = useContext(addUser); //사용자 정보 저장
   const scrollTop = useScrollTop(); //페이지 전환시 스크롤 최상단으로 이동
+  const {
+    cartQuery: { data: products },
+  } = useCart();
 
   useEffect(() => {
     //사용자 정보 기억
     onUserStateChange(user => {
       setUser(user);
     });
+
     scrollTop;
   }, []);
 
@@ -147,10 +152,14 @@ const Index = () => {
               }}
             >
               <FontAwesomeIcon icon={faShoppingBag} className={styles.icon} />
-              <em className={styles.count}>0</em>
+              <em className={styles.count}>{products && products.length}</em>
             </li>
             {user.isAdmin && (
-              <li>
+              <li
+                onClick={() => {
+                  navigate(PATH.ADMIN);
+                }}
+              >
                 <FontAwesomeIcon icon={faPencilAlt} />
               </li>
             )}

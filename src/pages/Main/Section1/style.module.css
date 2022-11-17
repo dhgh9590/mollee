@@ -13,7 +13,7 @@
 
 .item .text{position: absolute;}
 .item .text .sub_title{font-size: 16px;}
-.item .text .sub_title strong{font-weight: 500;}
+.item .text .sub_title strong{font-weight: 500; margin-right: 10px;}
 .item .text .sub_title em{font-weight: 400;}
 
 .item .text .title h3{ white-space: nowrap;  font-size: 32px;font-weight: 800; margin: 15px 0 35px;}

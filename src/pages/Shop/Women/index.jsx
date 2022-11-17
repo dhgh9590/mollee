@@ -14,7 +14,7 @@ const Index = () => {
         title={`Newest Women Clothing`}
         content={`Casual linen. Shirt design. 100% suede leather. Backstitch elbow patch`}
       ></Header>
-      <Content></Content>
+      <Content type={`Women Clothing`}></Content>
     </div>
   );
 };
