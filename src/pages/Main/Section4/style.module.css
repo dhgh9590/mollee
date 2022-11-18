@@ -13,7 +13,7 @@
 
 .slide{width: 250px;height: 500px; }
 
-.heart{display: flex; justify-content: space-between;}
+.heart{display: flex; justify-content: space-between; position: relative; z-index: 9999;}
 .heart em{display: block; width: 45px;height: 20px; line-height: 20px; text-align: center; box-sizing: border-box; font-size: 12px; font-weight: 500;color: #ccc; background: #000;} 
 .heart .icon{font-size: 20px; cursor: pointer;}
 

@@ -36,13 +36,25 @@ export const Cart = () => {
     removeItem.mutate(data.id);
   };
 
+  //아이템 가격 더하기 함수
+  const onTotalPrice = () => {
+    const price =
+      products &&
+      products.map(item => {
+        return item.price * item.count;
+      });
+    return price;
+  };
+
   //토탈 가격
   useEffect(() => {
-    if (products && products.length > 1) {
-      const price = products && products.reduce((a, b) => a.price * a.count + b.price * b.count); //장바구니 가격 더하기
-      setTotalPrice(price);
+    if (products && products.length >= 2) {
+      const price = onTotalPrice();
+      let newPrice = price && price.reduce((a, b) => a + b);
+      setTotalPrice(newPrice);
     } else if (products && products.length == 1) {
-      setTotalPrice(products[0].price * products[0].count);
+      const price = onTotalPrice();
+      setTotalPrice(price);
     }
   }, [products]);
 

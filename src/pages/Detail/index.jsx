@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useContext } from 'react';
 import { addUser } from '../../context/user';
-import { addOrUpdateToCart } from '../../constants/firebase';
+import { addOrUpdateToCart, onLogin } from '../../constants/firebase';
 
 export const Detail = () => {
   const { user } = useContext(addUser);
@@ -18,6 +18,10 @@ export const Detail = () => {
   const [count, setCount] = useState(1); //갯수
 
   const handleClick = () => {
+    if (!user) {
+      onLogin();
+      return;
+    }
     const product = {
       id: data && data.id,
       img: data && data.img,

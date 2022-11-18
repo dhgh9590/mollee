@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { PATH } from '../../../constants/path';
 import styles from './style.module.css';
 
 const Index = () => {
+  const navigate = useNavigate();
   return (
     <section className={styles.section}>
       <div className={styles.count}>
@@ -15,7 +18,7 @@ const Index = () => {
               <p>ACCESSORIES</p>
               <div className={styles.text}>
                 <div className={styles.sub_title}>
-                  <strong>MEN</strong>
+                  <strong>WOMEN</strong>
                   <em>ACCESSORIES</em>
                 </div>
                 <div className={styles.title}>
@@ -23,7 +26,12 @@ const Index = () => {
                     Fashion Fro <br /> This Summer
                   </h3>
                 </div>
-                <div className={styles.btn}>
+                <div
+                  className={styles.btn}
+                  onClick={() => {
+                    navigate(`${PATH.SHOP}/${PATH.ACCESSORIES}`);
+                  }}
+                >
                   <span></span>
                   <em>Shop Now</em>
                 </div>
@@ -44,7 +52,12 @@ const Index = () => {
                     Arrivals 2022
                   </h3>
                 </div>
-                <div className={styles.btn}>
+                <div
+                  className={styles.btn}
+                  onClick={() => {
+                    navigate(`${PATH.SHOP}/${PATH.MEN}`);
+                  }}
+                >
                   <span></span>
                   <em>Shop Now</em>
                 </div>
@@ -59,7 +72,12 @@ const Index = () => {
                 Non aliqua reprehenderit <br />
                 reprehenderit culpa laboris nulla
               </p>
-              <div className={styles.btn}>
+              <div
+                className={styles.btn}
+                onClick={() => {
+                  navigate(`${PATH.SHOP}/${PATH.SHOES}`);
+                }}
+              >
                 <span></span>
                 <em>Shop Now</em>
               </div>
@@ -70,7 +88,7 @@ const Index = () => {
               <p>DRESSES</p>
               <div className={styles.text}>
                 <div className={styles.sub_title}>
-                  <strong>MEN</strong>
+                  <strong>WOMEN</strong>
                   <em>COLLECTION</em>
                 </div>
                 <div className={styles.title}>
@@ -80,7 +98,12 @@ const Index = () => {
                     For Every Day
                   </h3>
                 </div>
-                <div className={styles.btn}>
+                <div
+                  className={styles.btn}
+                  onClick={() => {
+                    navigate(`${PATH.SHOP}/${PATH.WOMEN}`);
+                  }}
+                >
                   <span></span>
                   <em>Shop Now</em>
                 </div>
@@ -89,7 +112,14 @@ const Index = () => {
           </li>
         </ul>
       </div>
-      <button className={`${styles.btn1} btn1`}>View All Collections</button>
+      <button
+        className={`${styles.btn1} btn1`}
+        onClick={() => {
+          navigate(`${PATH.SHOP}/${PATH.MEN}`);
+        }}
+      >
+        View All Collections
+      </button>
     </section>
   );
 };

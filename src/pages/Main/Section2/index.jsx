@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import styles from './style.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { PATH } from '../../../constants/path';
 import Loading from '../../../components/Loading';
 
-const Index = () => {
+const Index = ({ handleWish, wishId }) => {
   const [menuActive, setMenuActive] = useState(0);
   const [type, setType] = useState(`Men Clothing`);
   const firebaseDAta = handleData(); //파이어 베이스에서 가지고온 데이터
@@ -87,12 +88,18 @@ const Index = () => {
           <div className={styles.item_list}>
             {data && (
               <ul>
-                {data.map(item => {
+                {data.map((item, index) => {
                   return (
                     <li key={item.id}>
                       <div className={styles.heart}>
                         <em>NEW</em>
-                        <FontAwesomeIcon icon={faHeart} className={styles.icon} />
+                        <FontAwesomeIcon
+                          icon={faHeart}
+                          className={`${styles.icon} ${wishId && wishId[index] == item.id && styles.active}`}
+                          onClick={() => {
+                            handleWish(item);
+                          }}
+                        />
                       </div>
                       <div
                         className={styles.item}
@@ -120,10 +127,22 @@ const Index = () => {
           <Loading></Loading>
         )}
 
-        <button className={`${styles.btn1} btn1`}>See All Products</button>
+        <button
+          className={`${styles.btn1} btn1`}
+          onClick={() => {
+            navigate(`${PATH.SHOP}/${PATH.MEN}`);
+          }}
+        >
+          See All Products
+        </button>
       </div>
     </section>
   );
+};
+
+Index.propTypes = {
+  handleWish: PropTypes.func,
+  wishId: PropTypes.array,
 };
 
 export default Index;

@@ -8,6 +8,7 @@ export const PATH = {
   DETAIL: '/detail',
   CART: '/cart',
   ADMIN: '/admin',
+  WISH: '/wish',
   MEN: 'men',
   WOMEN: 'women',
   ACCESSORIES: 'Accessories',

@@ -15,7 +15,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 const database = getDatabase(app); //데이터 베이스
-console.log('로그인', app);
 
 export function onLogin() {
   signInWithPopup(auth, provider)
@@ -97,4 +96,23 @@ export async function addOrUpdateToCart(userId, product) {
 //카트에서 데이터 삭제
 export async function removeFromCart(userId, productId) {
   return remove(ref(database, `carts/${userId}/${productId}`));
+}
+
+//찜에서 데이터 가지고 오기
+export async function getWish(userId) {
+  return get(ref(database, `wish/${userId}`)) //
+    .then(snapshot => {
+      const items = snapshot.val() || {};
+      return Object.values(items);
+    });
+}
+
+//찜에 데이터 추가
+export async function addWish(userId, product) {
+  return set(ref(database, `wish/${userId}/${product.id}`), product);
+}
+
+//찜에서 데이터 삭제
+export async function removeWish(userId, productId) {
+  return remove(ref(database, `wish/${userId}/${productId}`));
 }

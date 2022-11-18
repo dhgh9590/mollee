@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -14,7 +15,7 @@ import { handleData } from '../../../constants/firebase';
 import { useNavigate } from 'react-router-dom';
 import { PATH } from '../../../constants/path';
 
-export default function App() {
+export default function App({ handleWish }) {
   const firebaseDAta = handleData(); //파이어 베이스에서 가지고온 데이터
   const [data, setData] = useState(); //아이템 데이터
   const navigate = useNavigate();
@@ -93,6 +94,7 @@ export default function App() {
             }}
             loop={true}
             loopFillGroupWithBlank={true}
+            loopAdditionalSlides={1}
             pagination={{
               clickable: true,
             }}
@@ -107,7 +109,13 @@ export default function App() {
                     <div className={styles.slide}>
                       <div className={styles.heart}>
                         <em>BAST</em>
-                        <FontAwesomeIcon icon={faHeart} className={styles.icon} />
+                        <FontAwesomeIcon
+                          icon={faHeart}
+                          className={styles.icon}
+                          onClick={() => {
+                            handleWish(item);
+                          }}
+                        />
                       </div>
                       <div
                         className={styles.item}
@@ -135,3 +143,7 @@ export default function App() {
     </div>
   );
 }
+
+App.propTypes = {
+  handleWish: PropTypes.func,
+};

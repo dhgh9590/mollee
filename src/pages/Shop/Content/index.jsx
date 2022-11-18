@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from './style.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faHeart } from '@fortawesome/free-solid-svg-icons';
@@ -7,12 +7,32 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { PATH } from '../../../constants/path';
 import Loading from '../../../components/Loading';
+import { useRef } from 'react';
+import usePopupClose from '../../../hooks/usePopupClose';
+import useWish from '../../../hooks/useWish';
+import { addUser } from '../../../context/user';
 
 const Index = ({ type }) => {
+  const { user } = useContext(addUser);
   const firebaseDAta = handleData(); //파이어 베이스에서 가지고온 데이터
-  const [data, setData] = useState(); //아이템 데이터
+  const [allData, setAllData] = useState(); //모든 아이템 데이터
+  const [data, setData] = useState(); //0~12번째 아이템 데이터
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); //로딩
+  const [filterText, setFilterText] = useState(`new`); //필터 텍스트 가지고오기
+  const [filterToggle, setFilterToggle] = useState(false); //필터 토글 창 닫기
+  const filter = useRef();
+  const toggleValue = usePopupClose(filter);
+
+  //찜하기
+  const { addWishs } = useWish();
+  const handleWish = item => {
+    addWishs.mutate((user && user.uid, item));
+  };
+
+  useEffect(() => {
+    setFilterToggle(toggleValue);
+  }, [toggleValue]);
 
   //프로미스 변환 및 필터
   const getData = () => {
@@ -21,9 +41,29 @@ const Index = ({ type }) => {
       const data = appData.filter(item => {
         return item.type == type;
       });
-      setData(data);
+      setAllData(data);
+      const newData = data.slice(0, 12);
+      setData(newData);
       setLoading(false);
     });
+  };
+
+  //높은 가격순 정렬
+  const highPriceFilter = () => {
+    const newData = allData.sort((a, b) => {
+      return b.price - a.price;
+    });
+    setAllData(newData);
+    setData(newData.slice(0, 12));
+  };
+
+  //낮은 가격순 정렬
+  const lowPriceFilter = () => {
+    const newData = allData.sort((a, b) => {
+      return a.price - b.price;
+    });
+    setAllData(newData);
+    setData(newData.slice(0, 12));
   };
 
   useEffect(() => {
@@ -34,16 +74,51 @@ const Index = ({ type }) => {
     <section className={styles.section}>
       <div className={styles.top_menu}>
         <div className={styles.item_count}>
-          <strong>25</strong>
+          <strong>{allData && allData.length}</strong>
           <em>Products Found</em>
         </div>
-        <div className={styles.item_filter}>
+        <div ref={filter} className={styles.item_filter}>
           <p>
-            sort by:
-            <strong>
-              Popularity <FontAwesomeIcon icon={faAngleDown} className={styles.icon} />
+            sort by :
+            <strong
+              onClick={() => {
+                setFilterToggle(true);
+              }}
+            >
+              {filterText} <FontAwesomeIcon icon={faAngleDown} className={styles.icon} />
             </strong>
           </p>
+          {filterToggle == true && (
+            <ul>
+              <li
+                onClick={() => {
+                  setFilterText(`new`);
+                  getData();
+                  setFilterToggle(false);
+                }}
+              >
+                new
+              </li>
+              <li
+                onClick={() => {
+                  setFilterText(`high price`);
+                  highPriceFilter();
+                  setFilterToggle(false);
+                }}
+              >
+                high price
+              </li>
+              <li
+                onClick={() => {
+                  setFilterText(`low price`);
+                  lowPriceFilter();
+                  setFilterToggle(false);
+                }}
+              >
+                low price
+              </li>
+            </ul>
+          )}
         </div>
       </div>
       {loading == false ? (
@@ -55,7 +130,13 @@ const Index = ({ type }) => {
                   <li key={item.id}>
                     <div className={styles.heart}>
                       {item.bast == `true` ? <em>BAST</em> : <p></p>}
-                      <FontAwesomeIcon icon={faHeart} className={styles.icon} />
+                      <FontAwesomeIcon
+                        icon={faHeart}
+                        className={styles.icon}
+                        onClick={() => {
+                          handleWish(item);
+                        }}
+                      />
                     </div>
                     <div
                       className={styles.item}
@@ -86,7 +167,15 @@ const Index = ({ type }) => {
       )}
 
       <div className={styles.more}>
-        <button className={`${styles.btn1} btn1`}> LOAD MORE</button>
+        <button
+          className={`${styles.btn1} btn1`}
+          onClick={() => {
+            setData(allData);
+          }}
+        >
+          {' '}
+          LOAD MORE
+        </button>
       </div>
     </section>
   );

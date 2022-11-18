@@ -18,6 +18,7 @@
 .heart{display: flex; justify-content: space-between;}
 .heart em{display: block; width: 45px;height: 20px; line-height: 20px; text-align: center; box-sizing: border-box; font-size: 12px; font-weight: 500;color: #ccc; background: #000;} 
 .heart .icon{font-size: 20px; cursor: pointer;}
+.heart .icon.active{color: red;}
 
 .item_list{margin-top: 50px;}
 .item_list ul{display: grid; grid-template-columns: repeat(4,250px); grid-gap:30px ;}

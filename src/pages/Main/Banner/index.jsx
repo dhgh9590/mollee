@@ -49,6 +49,7 @@ export default function App() {
           speed={1500}
           loop={true}
           pagination={{ clickable: true }}
+          loopAdditionalSlides={1}
           onSlideChange={swiper => {
             setIndex(swiper.realIndex + 1);
           }}
@@ -81,7 +82,7 @@ export default function App() {
                 <SwiperSlide key={1}>
                   <div className={`${styles.slide} slide`}>
                     <div className={`${styles.img} img`}>
-                      <img src={`${process.env.PUBLIC_URL}/images/banner.png`} alt="" />
+                      <img src={`${process.env.PUBLIC_URL}/images/banner2.png`} alt="" />
                     </div>
                     <div className={styles.text}>
                       <div className={`${styles.sub_title} sub_title`}>
@@ -102,7 +103,7 @@ export default function App() {
                 <SwiperSlide key={2}>
                   <div className={`${styles.slide} slide`}>
                     <div className={`${styles.img} img`}>
-                      <img src={`${process.env.PUBLIC_URL}/images/banner.png`} alt="" />
+                      <img src={`${process.env.PUBLIC_URL}/images/banner3.png`} alt="" />
                     </div>
                     <div className={styles.text}>
                       <div className={`${styles.sub_title} sub_title`}>

@@ -103,13 +103,7 @@ const Index = () => {
         <div className={styles.possession}>
           <em>© All right reserved. Fashionee 2022</em>
           <div className={styles.payment}>
-            <em>Payment Methods:</em>
-            <ul>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
+            <em>Payment Methods</em>
           </div>
         </div>
       </div>
