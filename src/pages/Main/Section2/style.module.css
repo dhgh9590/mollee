@@ -51,7 +51,7 @@
 
 @media (max-width:600px){
     .item_list ul{grid-template-columns: repeat(2,41.6667vw);}
-    .item_list ul li{width: 100%; height: 69.1667vw;}
+    .item_list ul li{width: 100%; height: 73.0000vw;}
     .item .img{ height: 50.0000vw; margin: 3.3333vw 0 4.1667vw;}
 }
 
