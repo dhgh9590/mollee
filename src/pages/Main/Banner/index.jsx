@@ -9,9 +9,12 @@ import styles from './style.module.css';
 // import required modules
 import { Navigation, Pagination } from 'swiper';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { PATH } from '../../../constants/path';
 
 export default function App() {
   const [index, setIndex] = useState(); //현재 슬라이드 인덱스 번호 저장
+  const navigate = useNavigate();
   return (
     <div className={`${styles.container} slide1`}>
       <div className={styles.side_bar}>
@@ -73,7 +76,14 @@ export default function App() {
                           Meet New <br /> Fashion WeeK
                         </h2>
                       </div>
-                      <button className={`${styles.btn1} btn1`}>Shop Now</button>
+                      <button
+                        onClick={() => {
+                          navigate(`${PATH.SHOP}/${PATH.WOMEN}`);
+                        }}
+                        className={`${styles.btn1} btn1`}
+                      >
+                        Shop Now
+                      </button>
                     </div>
                   </div>
                 </SwiperSlide>
@@ -94,7 +104,14 @@ export default function App() {
                           Meet New <br /> Fashion WeeK
                         </h2>
                       </div>
-                      <button className={`${styles.btn1} btn1`}>Shop Now</button>
+                      <button
+                        onClick={() => {
+                          navigate(`${PATH.SHOP}/${PATH.ACCESSORIES}`);
+                        }}
+                        className={`${styles.btn1} btn1`}
+                      >
+                        Shop Now
+                      </button>
                     </div>
                   </div>
                 </SwiperSlide>
@@ -115,7 +132,14 @@ export default function App() {
                           Meet New <br /> Fashion WeeK
                         </h2>
                       </div>
-                      <button className={`${styles.btn1} btn1`}>Shop Now</button>
+                      <button
+                        onClick={() => {
+                          navigate(`${PATH.SHOP}/${PATH.MEN}`);
+                        }}
+                        className={`${styles.btn1} btn1`}
+                      >
+                        Shop Now
+                      </button>
                     </div>
                   </div>
                 </SwiperSlide>
