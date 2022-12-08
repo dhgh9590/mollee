@@ -46,7 +46,7 @@ export const Main = () => {
         <Section1></Section1>
         <Section2 handleWish={handleWish} wishId={wishId}></Section2>
         <Section3></Section3>
-        <Section4 handleWish={handleWish}></Section4>
+        <Section4 handleWish={handleWish} wishId={wishId}></Section4>
         <Section5></Section5>
       </main>
       <Footer></Footer>

@@ -13,9 +13,12 @@
 
 .slide{width: 250px;height: 500px; }
 
-.heart{display: flex; justify-content: space-between; position: relative; z-index: 9999;}
+.heart{display: flex; justify-content: space-between;}
+.heart ul{}
+.heart ul li:nth-child(2){display: none;}
 .heart em{display: block; width: 45px;height: 20px; line-height: 20px; text-align: center; box-sizing: border-box; font-size: 12px; font-weight: 500;color: #ccc; background: #000;} 
 .heart .icon{font-size: 20px; cursor: pointer;}
+.heart .icon.active{color: red;}
 
 .item{cursor: pointer;}
 .item .img{width: 100%; height: 300px;background: #999; margin: 20px 0 15px; transition: all 0.2s;}

@@ -13,10 +13,12 @@
 .top_menu .item_filter ul li{padding: 5px; box-sizing: border-box;text-align: center; border-bottom: 1px solid #ccc; cursor: pointer;}
 
 .item_wrap{margin-top: 50px;}
-.item_wrap ul{ display: grid; grid-template-columns: repeat(4,minmax(250px,350px)); grid-gap: 20px; }
-.item_wrap ul li{width: 100%;height: 480px;}
+.item_wrap > ul{ display: grid; grid-template-columns: repeat(4,minmax(250px,350px)); grid-gap: 20px; }
+.item_wrap > ul > li{width: 100%;height: 480px;}
 
 .heart{display: flex; justify-content: space-between;}
+.heart ul{}
+.heart ul li:nth-child(2){display: none;}
 .heart em{display: block; width: 45px;height: 20px; line-height: 20px; text-align: center; box-sizing: border-box; font-size: 12px; font-weight: 500;color: #ccc; background: #000;} 
 .heart .icon{font-size: 20px; cursor: pointer;}
 .heart .icon.active {color: red;}

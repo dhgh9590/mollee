@@ -23,12 +23,32 @@ const Index = ({ type }) => {
   const [filterToggle, setFilterToggle] = useState(false); //필터 토글 창 닫기
   const filter = useRef();
   const toggleValue = usePopupClose(filter);
+  const [btn, setBtn] = useState(false);
 
   //찜하기
   const { addWishs } = useWish();
+  const [wishId, setWishId] = useState();
   const handleWish = item => {
     addWishs.mutate((user && user.uid, item));
   };
+
+  const {
+    cartQuery: { data: products },
+  } = useWish();
+
+  const wishFilter = () => {
+    const copy = products && [...products];
+    const newCopy =
+      copy &&
+      copy.map(item => {
+        return item.id;
+      });
+    setWishId(newCopy);
+  };
+
+  useEffect(() => {
+    wishFilter();
+  }, [products]);
 
   useEffect(() => {
     setFilterToggle(toggleValue);
@@ -130,13 +150,33 @@ const Index = ({ type }) => {
                   <li key={item.id}>
                     <div className={styles.heart}>
                       {item.bast == `true` ? <em>BAST</em> : <p></p>}
-                      <FontAwesomeIcon
-                        icon={faHeart}
-                        className={styles.icon}
-                        onClick={() => {
-                          handleWish(item);
-                        }}
-                      />
+                      <ul>
+                        {wishId &&
+                          wishId.map(wish => {
+                            if (wish == item.id) {
+                              return (
+                                <li key={wish}>
+                                  <FontAwesomeIcon
+                                    icon={faHeart}
+                                    className={`${styles.icon} ${styles.active}`}
+                                    onClick={() => {
+                                      handleWish(item);
+                                    }}
+                                  />
+                                </li>
+                              );
+                            }
+                          })}
+                        <li>
+                          <FontAwesomeIcon
+                            icon={faHeart}
+                            className={`${styles.icon}`}
+                            onClick={() => {
+                              handleWish(item);
+                            }}
+                          />
+                        </li>
+                      </ul>
                     </div>
                     <div
                       className={styles.item}
@@ -165,18 +205,19 @@ const Index = ({ type }) => {
           <Loading></Loading>
         </div>
       )}
-
-      <div className={styles.more}>
-        <button
-          className={`${styles.btn1} btn1`}
-          onClick={() => {
-            setData(allData);
-          }}
-        >
-          {' '}
-          LOAD MORE
-        </button>
-      </div>
+      {btn == false && (
+        <div className={styles.more}>
+          <button
+            className={`${styles.btn1} btn1`}
+            onClick={() => {
+              setData(allData);
+              setBtn(true);
+            }}
+          >
+            LOAD MORE
+          </button>
+        </div>
+      )}
     </section>
   );
 };

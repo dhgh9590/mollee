@@ -15,7 +15,7 @@ import { handleData } from '../../../constants/firebase';
 import { useNavigate } from 'react-router-dom';
 import { PATH } from '../../../constants/path';
 
-export default function App({ handleWish }) {
+export default function App({ handleWish, wishId }) {
   const firebaseDAta = handleData(); //파이어 베이스에서 가지고온 데이터
   const [data, setData] = useState(); //아이템 데이터
   const navigate = useNavigate();
@@ -109,13 +109,33 @@ export default function App({ handleWish }) {
                     <div className={styles.slide}>
                       <div className={styles.heart}>
                         <em>BAST</em>
-                        <FontAwesomeIcon
-                          icon={faHeart}
-                          className={styles.icon}
-                          onClick={() => {
-                            handleWish(item);
-                          }}
-                        />
+                        <ul>
+                          {wishId &&
+                            wishId.map(wish => {
+                              if (wish == item.id) {
+                                return (
+                                  <li key={wish}>
+                                    <FontAwesomeIcon
+                                      icon={faHeart}
+                                      className={`${styles.icon} ${styles.active}`}
+                                      onClick={() => {
+                                        handleWish(item);
+                                      }}
+                                    />
+                                  </li>
+                                );
+                              }
+                            })}
+                          <li>
+                            <FontAwesomeIcon
+                              icon={faHeart}
+                              className={`${styles.icon}`}
+                              onClick={() => {
+                                handleWish(item);
+                              }}
+                            />
+                          </li>
+                        </ul>
                       </div>
                       <div
                         className={styles.item}
@@ -146,4 +166,5 @@ export default function App({ handleWish }) {
 
 App.propTypes = {
   handleWish: PropTypes.func,
+  wishId: PropTypes.array,
 };

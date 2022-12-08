@@ -88,18 +88,38 @@ const Index = ({ handleWish, wishId }) => {
           <div className={styles.item_list}>
             {data && (
               <ul>
-                {data.map((item, index) => {
+                {data.map(item => {
                   return (
                     <li key={item.id}>
                       <div className={styles.heart}>
                         <em>NEW</em>
-                        <FontAwesomeIcon
-                          icon={faHeart}
-                          className={`${styles.icon} ${wishId && wishId[index] == item.id && styles.active}`}
-                          onClick={() => {
-                            handleWish(item);
-                          }}
-                        />
+                        <ul>
+                          {wishId &&
+                            wishId.map(wish => {
+                              if (wish == item.id) {
+                                return (
+                                  <li key={wish}>
+                                    <FontAwesomeIcon
+                                      icon={faHeart}
+                                      className={`${styles.icon} ${styles.active}`}
+                                      onClick={() => {
+                                        handleWish(item);
+                                      }}
+                                    />
+                                  </li>
+                                );
+                              }
+                            })}
+                          <li>
+                            <FontAwesomeIcon
+                              icon={faHeart}
+                              className={`${styles.icon}`}
+                              onClick={() => {
+                                handleWish(item);
+                              }}
+                            />
+                          </li>
+                        </ul>
                       </div>
                       <div
                         className={styles.item}
