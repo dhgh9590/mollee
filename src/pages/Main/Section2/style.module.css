@@ -5,7 +5,7 @@
 .sub_title strong{font-weight: 700; letter-spacing: 0.1em; margin-right: 10px;}
 .sub_title em{font-weight: 400; letter-spacing: 0.2em;}
 
-.title{margin: 20px 0 50px;}
+.title{margin: 20px 0 50px; text-align: center;}
 .title h2{font-size: 36px;font-weight: 500; letter-spacing: 0.02em;}
 
 .menu{}
@@ -16,8 +16,8 @@
 .menu ul li.active::before{content: '';width: 100%;height: 2px;background: #000; position: absolute; bottom: 0; left: 0;}
 
 .heart{display: flex; justify-content: space-between;}
-.heart ul{}
-.heart ul li:nth-child(2){display: none;}
+.heart > ul{}
+.heart > ul > li:nth-child(2){display: none;}
 .heart em{display: block; width: 45px;height: 20px; line-height: 20px; text-align: center; box-sizing: border-box; font-size: 12px; font-weight: 500;color: #ccc; background: #000;} 
 .heart .icon{font-size: 20px; cursor: pointer;}
 .heart .icon.active{color: red;}
@@ -48,12 +48,12 @@
 }
 
 @media (max-width:860px){
-    .item_list ul{grid-template-columns: repeat(2,250px);}
+    .item_list > ul{grid-template-columns: repeat(2,250px);}
 }
 
 @media (max-width:600px){
-    .item_list ul{grid-template-columns: repeat(2,41.6667vw);}
-    .item_list ul li{width: 100%; height: 73.0000vw;}
+    .item_list > ul{grid-template-columns: repeat(2,41.6667vw);}
+    .item_list > ul > li{width: 100%; height: 73.0000vw;}
     .item .img{ height: 50.0000vw; margin: 3.3333vw 0 4.1667vw;}
 }
 
@@ -63,7 +63,7 @@
 }
 
 @media (max-width:380px){
-    .item_list ul{grid-template-columns: repeat(1,250px);}
-    .item_list ul li{width: 250px;height: 415px; }
+    .item_list > ul{grid-template-columns: repeat(1,250px);}
+    .item_list > ul > li{width: 250px;height: 415px; }
     .item .img{ height: 300px;margin: 20px 0 25px;}
 }
