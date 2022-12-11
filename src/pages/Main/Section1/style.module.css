@@ -63,9 +63,6 @@
     .item .text .sub_title{font-size: 1.3333vw;}
     .item .text .title h3{ font-size: 2.6667vw;margin: 1.2500vw 0 2.9167vw;}
 
-    .item .btn span{width: 2.0833vw;height: 0.1667vw; margin-right: 1.2500vw;}
-    .item .btn em{font-size: 1.1667vw;}
-
     .item_wrap ul li:nth-child(1){margin: 30.8333vw 0 0 -2.5000vw;}
     .item_wrap ul li:nth-child(1) .item p{bottom:17.5000vw; left: -22.5000vw; }
     .item_wrap ul li:nth-child(1) .item .text{ top: 25.8333vw; left: 23.3333vw;}
@@ -117,7 +114,6 @@
 
 
 @media (max-width:430px) {
-    .item_wrap{padding: 0 10px;}
     .item_wrap ul li .item p{ font-size: 32px; }
 }
 
