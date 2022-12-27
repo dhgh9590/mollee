@@ -13,7 +13,7 @@ const Index = () => {
 
   //남은 시간 꼐산
   const countDown = () => {
-    const masTime = new Date('2022-12-31'); //D-day 날짜
+    const masTime = new Date('2023-02-31'); //D-day 날짜
     const todayTime = new Date();
     const totalTime = masTime - todayTime;
     const Day = String(Math.floor(totalTime / (1000 * 60 * 60 * 24)));
